@@ -1,8 +1,8 @@
-#define channumber 8 //number of channels
+#define channumber 8 //How many channels have your radio???
 #define filter 10 // Glitch Filter
 int channel[channumber]; //read Channel values
 int lastReadChannel[channumber]; //Last  values readed
-int counter=0; //couter
+int conta=0; //couter
 
 
 void setup()
@@ -14,7 +14,7 @@ void setup()
 
 void loop()
 {
-    Serial.println(String(map(channel[0], 695, 1532, 1095, 1935)) + ' ' + String(map(channel[1], 695, 1532, 1095, 1935)) + ' ' + String(map(channel[2], 695, 1532, 1095, 1935)) + ' ' + String(map(channel[3], 695, 1532, 1095, 1935)));
+    Serial.println(String(map(channel[0], 694, 1531, 1099, 1939)) + ' ' + String(map(channel[1], 694, 1531, 1099, 1939)) + ' ' + String(map(channel[2], 694, 1531, 1099, 1939)) + ' ' + String(map(channel[3], 694, 1531, 1099, 1939)));
 
   if(pulseIn(4, HIGH) > 3000) //If pulse > 3000 useconds, continues
   {
@@ -30,11 +30,11 @@ void loop()
  else
  {
  channel[i]=(lastReadChannel[i]+channel[i])/2; //Average the last pulse eith the current pulse
- counter++; //increment counter
+ conta++; //increment counter
  }
 
     }
-    if(counter > filter)
+    if(conta > filter)//If counter is > than filter, then prints values
     {
 
 
@@ -51,6 +51,6 @@ void loop()
  {
    digitalWrite(13, LOW);//If not turn it off
  }
- counter=0;//Restart counter.
+ conta=0;//Restart counter.
     }
   } 
